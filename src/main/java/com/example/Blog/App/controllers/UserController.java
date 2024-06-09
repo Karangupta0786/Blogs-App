@@ -1,10 +1,10 @@
 package com.example.Blog.App.controllers;
 
 import com.example.Blog.App.dto.UserDto;
-import com.example.Blog.App.impl.UserServiceImpl;
-import com.example.Blog.App.model.User;
 import com.example.Blog.App.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,22 +15,20 @@ public class UserController {
 
     @Autowired
     UserService userService;
-    @Autowired
-    UserServiceImpl userServiceImpl;
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id){
-        return userServiceImpl.toUser(userService.getById(id));
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id){
+        return new ResponseEntity<>(userService.getById(id), HttpStatus.OK) ;
     }
 
     @PostMapping
-    public User post(@RequestBody User user){
-        return userServiceImpl.toUser(userService.createUser(userServiceImpl.toDto(user)));
+    public UserDto post(@RequestBody UserDto userDto){
+        return userService.createUser(userDto);
     }
 
     @GetMapping
-    public List<User> getAll(){
-        return userService.getUsers().stream().map(l->userServiceImpl.toUser(l)).toList();
+    public List<UserDto> getAll(){
+        return userService.getUsers();
     }
 
 

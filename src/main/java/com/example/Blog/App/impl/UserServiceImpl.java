@@ -4,6 +4,7 @@ import com.example.Blog.App.dto.UserDto;
 import com.example.Blog.App.model.User;
 import com.example.Blog.App.repository.UserRepository;
 import com.example.Blog.App.service.UserService;
+import com.example.Blog.App.util.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -19,10 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getById(Long id) {
-        if (userRepository.findById(id).isPresent()){
-            return toDto(userRepository.findById(id).get());
-        }
-        return null;
+            return userRepository.findById(id).map(this::toDto).orElseThrow(()-> new CustomException("User","id",id));
     }
 
     @Override
