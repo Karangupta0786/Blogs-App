@@ -15,4 +15,6 @@ public interface UserService {
 
     public UserDto createUser(UserDto userDto);
 
+    public String updateUSer(Long id, UserDto userDto);
+
 }

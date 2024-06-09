@@ -30,12 +30,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String deleteUser(Long id) {
-        return "Deleted successfully";
+        if (userRepository.findById(id).isPresent()){
+            userRepository.deleteById(id);
+            return "Deleted successfully";
+        }
+        return "user doesn't exists at id: "+id;
     }
 
     @Override
     public UserDto createUser(UserDto userDto) {
         return toDto(userRepository.save(toUser(userDto)));
+    }
+
+    @Override
+    public String updateUSer(Long id, UserDto userDto) {
+        if (userRepository.findById(id).isPresent()) {
+            User user = userRepository.findById(id).get();
+            user.setAbout(userDto.getAbout());
+            user.setName(userDto.getName());
+            user.setEmail(userDto.getEmail());
+            user.setPassword(userDto.getPassword());
+            userRepository.save(user);
+            return "Updated successfully";
+        }
+        return "user doesn't exists at id: "+id;
     }
 
     public UserDto toDto(User user){
