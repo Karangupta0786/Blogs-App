@@ -2,7 +2,7 @@ package com.example.Blog.App.controllers;
 
 import com.example.Blog.App.dto.UserDto;
 import com.example.Blog.App.service.UserService;
-import jakarta.validation.Valid;
+import com.example.Blog.App.util.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,8 +39,12 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id){
-        return userService.deleteUser(id);
+    public ResponseEntity<ApiResponse> delete(@PathVariable Long id){
+        boolean status = userService.deleteUser(id);
+        if (status){
+            return new ResponseEntity<>(new ApiResponse("User Deleted Successfully", true),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(new ApiResponse("User not found at this index",false),HttpStatus.NOT_FOUND);
     }
 
 }
