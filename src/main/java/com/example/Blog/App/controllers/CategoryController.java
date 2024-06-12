@@ -2,9 +2,11 @@ package com.example.Blog.App.controllers;
 
 import com.example.Blog.App.dto.CategoryDto;
 import com.example.Blog.App.service.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,12 +28,12 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDto> add(@RequestBody CategoryDto categoryDto){
+    public ResponseEntity<CategoryDto> add(@Valid @RequestBody CategoryDto categoryDto){
         return new ResponseEntity<>(categoryService.addCategory(categoryDto),HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryDto> update(@RequestBody CategoryDto categoryDto, @PathVariable Long id){
+    public ResponseEntity<CategoryDto> update(@Validated @RequestBody CategoryDto categoryDto, @PathVariable Long id){
         return new ResponseEntity<>(categoryService.update(categoryDto,id),HttpStatus.OK);
     }
 
