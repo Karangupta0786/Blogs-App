@@ -21,7 +21,7 @@ public class CategoryDto {
     private String title;
 
     @NotEmpty(message = "description can't be empty!!")
-    @Size(min = 8, max = 20,message = "description must have chars between 8 to 20")
+    @Size(min = 8, max = 40,message = "description must have chars between 8 to 40")
     private String description;
 
 
