@@ -1,5 +1,6 @@
 package com.example.Blog.App.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,13 +19,10 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-
     private String description;
 
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Post> posts = new ArrayList<>();
-
-
 }

@@ -3,17 +3,14 @@ package com.example.Blog.App.dto;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Data
 public class CategoryDto {
-
     private Integer id;
 
     @NotEmpty(message = "Title can't be empty!!")
@@ -23,6 +20,4 @@ public class CategoryDto {
     @NotEmpty(message = "description can't be empty!!")
     @Size(min = 8, max = 40,message = "description must have chars between 8 to 40")
     private String description;
-
-
 }

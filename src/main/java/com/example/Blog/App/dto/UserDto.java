@@ -4,15 +4,13 @@ package com.example.Blog.App.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Data
 public class UserDto {
     Long id;
 
@@ -25,5 +23,4 @@ public class UserDto {
     String email;
     @NotBlank
     String about;
-
 }
