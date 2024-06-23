@@ -11,6 +11,7 @@ import com.example.Blog.App.service.PostService;
 import com.example.Blog.App.util.CustomException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -70,7 +71,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<PostDto> getAllPost(int pageNumber, int pageSize) {
         Pageable p = PageRequest.of(pageNumber,pageSize);
-        List<PostDto> postDtoList = postRepository.findAll(p)
+        Page<Post> postPage = postRepository.findAll(p);
+        List<Post> postList = postPage.getContent();
+        List<PostDto> postDtoList = postList
                                     .stream()
                                     .map(l->modelMapper.map(l, PostDto.class))
                                     .toList();
