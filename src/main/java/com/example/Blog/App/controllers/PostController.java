@@ -1,6 +1,7 @@
 package com.example.Blog.App.controllers;
 
 
+import com.example.Blog.App.PostResponse;
 import com.example.Blog.App.dto.PostDto;
 import com.example.Blog.App.model.Post;
 import com.example.Blog.App.service.PostService;
@@ -34,9 +35,9 @@ public class PostController {
     }
 
     @GetMapping
-    public List<PostDto> getPosts(
+    public PostResponse getPosts(
             @RequestParam(value = "pageNumber",required = false,defaultValue = "0") int pageNumber,
-            @RequestParam(value = "pageSize",defaultValue = "5",required = false) int pageSize){
+            @RequestParam(value = "pageSize",defaultValue = "10",required = false) int pageSize){
         return postService.getAllPost(pageNumber, pageSize);
     }
 

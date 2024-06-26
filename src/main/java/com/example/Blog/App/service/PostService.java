@@ -1,5 +1,6 @@
 package com.example.Blog.App.service;
 
+import com.example.Blog.App.PostResponse;
 import com.example.Blog.App.dto.PostDto;
 import com.example.Blog.App.model.Post;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ public interface PostService {
 
     void deletePost(Long postId);
 
-    List<PostDto> getAllPost(int pageNumber, int pageSize);
+    PostResponse getAllPost(int pageNumber, int pageSize);
 
     List<Post> getAllPostByUserId(Long id);
 

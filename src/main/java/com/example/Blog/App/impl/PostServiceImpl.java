@@ -1,5 +1,6 @@
 package com.example.Blog.App.impl;
 
+import com.example.Blog.App.PostResponse;
 import com.example.Blog.App.dto.PostDto;
 import com.example.Blog.App.model.Category;
 import com.example.Blog.App.model.Post;
@@ -69,7 +70,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getAllPost(int pageNumber, int pageSize) {
+    public PostResponse getAllPost(int pageNumber, int pageSize) {
         Pageable p = PageRequest.of(pageNumber,pageSize);
         Page<Post> postPage = postRepository.findAll(p);
         List<Post> postList = postPage.getContent();
@@ -77,8 +78,24 @@ public class PostServiceImpl implements PostService {
                                     .stream()
                                     .map(l->modelMapper.map(l, PostDto.class))
                                     .toList();
-        return postDtoList;
+        PostResponse postResponse = new PostResponse();
+
+        postResponse.setContent(postDtoList);
+        postResponse.setPageNumber(postPage.getNumber());
+        postResponse.setPageSize(postPage.getSize());
+        postResponse.setTotalElements(postPage.getTotalElements());
+        postResponse.setTotalPages(postPage.getTotalPages());
+        postResponse.setPageNumber(postPage.getNumber());
+        postResponse.setLastPage(postPage.isLast());
+
+        return postResponse;
     }
+
+
+
+    // task-> implement pagination for getAllPostByUserId & getAllPostsByCategoryId.
+
+
 
     @Override
     public List<Post> getAllPostByUserId(Long id) {
