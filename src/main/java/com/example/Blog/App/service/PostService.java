@@ -4,6 +4,7 @@ import com.example.Blog.App.PostResponse;
 import com.example.Blog.App.dto.PostDto;
 import com.example.Blog.App.model.Post;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -23,6 +24,6 @@ public interface PostService {
 
     List<Post> getAllPostsByCategoryId(Long id);
 
-    List<Post> searchPosts(String keyword);
+    ResponseEntity<List<Post>> searchPosts(String keyword);
 
 }

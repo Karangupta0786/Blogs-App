@@ -1,8 +1,6 @@
 package com.example.Blog.App.repository;
 
-import com.example.Blog.App.model.Category;
 import com.example.Blog.App.model.Post;
-import com.example.Blog.App.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,5 +13,11 @@ public interface PostRepository extends JpaRepository<Post,Long> {
 
     @Query(value = "select * from posts where category_id = :categoryId",nativeQuery = true)
     List<Post> findByCategory(Long categoryId);
+
+
+    // is it not good to search
+    // Use JPQL and wildcards for search
+    @Query("SELECT p FROM Post p WHERE p.title LIKE %:key%")
+    List<Post> searchPosts(String key);
 
 }

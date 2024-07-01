@@ -52,4 +52,9 @@ public class PostController {
         return postService.getAllPostsByCategoryId(id);
     }
 
+    @GetMapping("search/{key}")
+    public ResponseEntity<List<Post>> searchPost(@PathVariable String key){
+        return postService.searchPosts(key);
+    }
+
 }

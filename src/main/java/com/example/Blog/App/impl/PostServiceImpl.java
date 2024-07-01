@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -117,8 +118,8 @@ public class PostServiceImpl implements PostService {
         return postRepository.findByCategory(id);
     }
 
-    @Override
-    public List<Post> searchPosts(String keyword) {
-        return null;
+    public ResponseEntity<List<Post>> searchPosts(String key){
+        return ResponseEntity.ok(postRepository.searchPosts(key));
     }
+
 }
