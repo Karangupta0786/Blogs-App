@@ -56,6 +56,7 @@ public class PostServiceImpl implements PostService {
         Post existingPost = postRepository.findById(postId).orElseThrow(()-> new CustomException("Post","ID",postId));
         existingPost.setTitle(postDto.getTitle());
         existingPost.setContent(postDto.getContent());
+        existingPost.setImageName(postDto.getImageName());
         return modelMapper.map(postRepository.save(existingPost), PostDto.class);
     }
 
@@ -67,8 +68,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post getPost(Long postId) {
-        return postRepository.findById(postId).orElseThrow(()-> new CustomException("Post","ID",postId));
+    public PostDto getPost(Long postId) {
+        Post post = postRepository.findById(postId).orElseThrow(()-> new CustomException("Post","ID",postId));
+        return modelMapper.map(post, PostDto.class);
     }
 
     @Override
