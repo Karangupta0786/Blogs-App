@@ -50,7 +50,7 @@ public class PostController {
         return postService.updatePost(postDto,postId);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public PostResponse getPosts(
             @RequestParam(value = "pageNumber",required = false,defaultValue = AppConstants.PAGE_NUMBER) int pageNumber,
             @RequestParam(value = "pageSize",defaultValue = AppConstants.PAGE_SIZE,required = false) int pageSize,
