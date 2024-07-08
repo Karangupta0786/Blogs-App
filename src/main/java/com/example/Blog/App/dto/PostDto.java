@@ -3,6 +3,8 @@ package com.example.Blog.App.dto;
 import lombok.*;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,4 +25,6 @@ public class PostDto {
     private CategoryDto categoryDto;
 
     private UserDto userDto;
+
+    private Set<CommentDto> comments = new HashSet<>();
 }

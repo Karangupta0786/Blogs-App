@@ -6,6 +6,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,4 +26,6 @@ public class UserDto {
     String email;
     @NotBlank
     String about;
+
+    List<CommentDto> comments = new ArrayList<>();
 }
