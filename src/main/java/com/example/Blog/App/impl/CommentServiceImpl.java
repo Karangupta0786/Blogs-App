@@ -54,6 +54,7 @@ public class CommentServiceImpl implements CommentService {
         commentDto.setUserName(modelMapper.map(comment.getUser(),UserDto.class).getName());
         commentDto.setId(comment.getId());
         commentDto.setContent(comment.getContent());
+
         System.out.println("COMMENT is: "+ comment.getContent()+" user: "+ comment.getUser());
         System.out.println("COMMENT_DTO is: "+commentDto.getContent()+" user: "+ commentDto.getUserName());
 

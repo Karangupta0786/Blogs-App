@@ -10,5 +10,4 @@ public interface CommentService {
     CommentDto addComment(String content, Long postId, Long userId);
 
     void delete(Long id);
-
 }
