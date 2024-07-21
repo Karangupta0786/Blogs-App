@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class UserController {
         return new ResponseEntity<>(userService.getById(id), HttpStatus.OK) ;
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public UserDto post(@Validated @RequestBody UserDto userDto){
         return userService.createUser(userDto);
     }

@@ -27,9 +27,14 @@ public class CategoryController {
         return new ResponseEntity<>(categoryService.getAll(),HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<CategoryDto> add(@Valid @RequestBody CategoryDto categoryDto){
-        return new ResponseEntity<>(categoryService.addCategory(categoryDto),HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(categoryService.addCategory(categoryDto),HttpStatus.OK);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     @PutMapping("/{id}")

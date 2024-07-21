@@ -18,13 +18,18 @@ public class FileServiceImpl implements FileService {
 
         //File name:
         String name = file.getOriginalFilename();
+        System.out.println("file.getOriginalFilename is : "+name);
 
         // random name generate file:
         String randomId = UUID.randomUUID().toString();
+        System.out.println("UUID.randomUUID().toString() is : "+randomId);
+
         String fileName1 = randomId.concat(name.substring(name.lastIndexOf(".")));
+        System.out.println("now, fileName1 is : "+ fileName1);
 
         // full path
         String filePath = path + File.separator + fileName1;
+        System.out.println("full filePath is : "+ filePath);
 
         // create folder if not created:
         File f = new File(path);
